@@ -1,4 +1,8 @@
 import { copyFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const here = dirname(fileURLToPath(import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 mkdirSync(out, { recursive: true });
-copyFileSync("entry.png", out + "/entry.png");
+copyFileSync(join(here, "entry.png"), join(out, "entry.png"));
